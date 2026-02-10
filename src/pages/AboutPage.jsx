@@ -3,12 +3,30 @@ import { motion } from 'framer-motion';
 import Gallery from '../components/Gallery';
 import Testimonials from '../components/Testimonials';
 
+const pageVariants = {
+    initial: { opacity: 0, scale: 0.98 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.98 }
+};
+
 const AboutPage = () => {
     return (
-        <div className="pt-24">
+        <motion.div
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.4 }}
+            className="pt-24"
+        >
             {/* Page Header */}
-            <section className="py-20 bg-gradient-to-b from-black to-zinc-950">
-                <div className="container mx-auto px-6 text-center">
+            <section className="py-20 bg-gradient-to-b from-black to-zinc-950 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-1/4 left-1/3 w-64 h-64 bg-coffee-400 rounded-full blur-3xl animate-pulse"></div>
+                    <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-coffee-600 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+                </div>
+
+                <div className="container mx-auto px-6 text-center relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -30,19 +48,26 @@ const AboutPage = () => {
             </section>
 
             {/* About Content */}
-            <section className="py-32 bg-zinc-900 section-divider">
-                <div className="container mx-auto px-6">
+            <section className="py-32 bg-zinc-900 section-divider relative overflow-hidden">
+                {/* Floating gradient orbs */}
+                <motion.div
+                    className="absolute top-1/3 right-1/4 w-96 h-96 bg-coffee-500/10 rounded-full blur-3xl"
+                    animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                />
+
+                <div className="container mx-auto px-6 relative z-10">
                     <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-black/40 image-overlay"
+                            className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-black/40 image-overlay group"
                         >
                             <img
                                 src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop"
                                 alt="Coffee Brewing Process"
-                                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
                             />
                         </motion.div>
 
@@ -65,18 +90,25 @@ const AboutPage = () => {
                             </div>
 
                             <div className="grid grid-cols-3 gap-6 pt-6 border-t border-zinc-800">
-                                <div className="text-center">
-                                    <div className="text-3xl font-heading text-coffee-400 mb-1">5+</div>
-                                    <div className="text-xs text-zinc-500 uppercase tracking-wider">Years</div>
-                                </div>
-                                <div className="text-center">
-                                    <div className="text-3xl font-heading text-coffee-400 mb-1">50+</div>
-                                    <div className="text-xs text-zinc-500 uppercase tracking-wider">Varieties</div>
-                                </div>
-                                <div className="text-center">
-                                    <div className="text-3xl font-heading text-coffee-400 mb-1">10k+</div>
-                                    <div className="text-xs text-zinc-500 uppercase tracking-wider">Happy Customers</div>
-                                </div>
+                                {[
+                                    { num: '5+', label: 'Years' },
+                                    { num: '50+', label: 'Varieties' },
+                                    { num: '10k+', label: 'Happy Customers' }
+                                ].map((stat, index) => (
+                                    <motion.div
+                                        key={stat.label}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.8 + index * 0.1 }}
+                                        whileHover={{ scale: 1.1 }}
+                                        className="text-center group cursor-default"
+                                    >
+                                        <div className="text-3xl font-heading text-coffee-400 mb-1 group-hover:text-coffee-300 transition-colors">
+                                            {stat.num}
+                                        </div>
+                                        <div className="text-xs text-zinc-500 uppercase tracking-wider">{stat.label}</div>
+                                    </motion.div>
+                                ))}
                             </div>
                         </motion.div>
                     </div>
@@ -85,7 +117,7 @@ const AboutPage = () => {
 
             <Gallery />
             <Testimonials />
-        </div>
+        </motion.div>
     );
 };
 
