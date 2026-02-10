@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  /* Coffee color palette */
+  --color-coffee-50: #fcfaf8;
+  --color-coffee-100: #f7f1eb;
+  --color-coffee-200: #efe2d6;
+  --color-coffee-300: #e3ccb8;
+  --color-coffee-400: #d4a373;
+  --color-coffee-500: #b08968;
+  --color-coffee-600: #9c6644;
+  --color-coffee-700: #7f5539;
+  --color-coffee-800: #6a4332;
+  --color-coffee-900: #55362a;
+  --color-coffee-950: #2e1c14;
+
+  /* Font families */
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+body {
+  background-color: #0c0a09;
+  color: #e7e5e4;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1c1917;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #44403c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #57534e;
+}
+
+/* Subtle zoom animation for hero */
+@keyframes subtle-zoom {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-subtle-zoom {
+  animation: subtle-zoom 20s ease-in-out infinite;
+}
