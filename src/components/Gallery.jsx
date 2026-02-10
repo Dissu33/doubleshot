@@ -30,14 +30,31 @@ const Gallery = () => {
     ];
 
     return (
-        <section className="py-24 bg-zinc-950">
+        <section className="py-32 bg-zinc-950 section-divider">
             <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
-                    <span className="text-coffee-400 uppercase tracking-widest text-sm font-medium">Gallery</span>
-                    <h2 className="text-4xl md:text-5xl font-heading text-white mt-3">Moments at DoubleShot</h2>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="inline-flex items-center gap-3 mb-4"
+                    >
+                        <div className="h-[1px] w-8 bg-coffee-400"></div>
+                        <span className="text-coffee-400 uppercase tracking-[0.3em] text-xs font-semibold">Visual Journey</span>
+                        <div className="h-[1px] w-8 bg-coffee-400"></div>
+                    </motion.div>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-4xl md:text-6xl font-heading text-white"
+                    >
+                        Moments at DoubleShot
+                    </motion.h2>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                     {images.map((image, index) => (
                         <motion.div
                             key={index}
@@ -45,16 +62,30 @@ const Gallery = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.05 }}
-                            className="aspect-square overflow-hidden rounded-lg group cursor-pointer"
+                            className="aspect-square overflow-hidden rounded-xl group cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-coffee-900/20 transition-shadow mobile-bright"
                         >
                             <img
                                 src={image.url}
                                 alt={image.alt}
-                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500"
+                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 brightness-90 md:brightness-75 group-hover:brightness-100"
                             />
                         </motion.div>
                     ))}
                 </div>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                    className="mt-12 text-center"
+                >
+                    <div className="inline-flex items-center gap-2 text-coffee-400 text-sm">
+                        <span className="w-12 h-[1px] bg-coffee-400"></span>
+                        <span>Every cup tells a story</span>
+                        <span className="w-12 h-[1px] bg-coffee-400"></span>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

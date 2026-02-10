@@ -6,6 +6,7 @@ import Menu from './components/Menu';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
+import { motion } from 'framer-motion';
 
 function App() {
   return (
@@ -17,48 +18,153 @@ function App() {
         <Menu />
         <Gallery />
 
-        {/* About Section */}
-        <section id="about" className="py-20 bg-zinc-900">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-heading mb-6 relative inline-block">
-              Our Story
-              <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-coffee-500"></span>
-            </h2>
-            <div className="grid md:grid-cols-2 gap-12 items-center mt-12 max-w-5xl mx-auto text-left">
-              <div className="aspect-[4/3] rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-                <img src="https://images.unsplash.com/photo-1511537632536-b71c27434bbc?q=80&w=2070&auto=format&fit=crop" alt="Coffee Brewing" className="w-full h-full object-cover" />
-              </div>
-              <div>
-                <p className="text-zinc-400 leading-relaxed mb-6">
-                  At <span className="text-coffee-400 font-semibold">DoubleShot Coffee Roasters</span>, we are more than just a cafe. We are a sanctuary for coffee lovers. Located in the vibrant heart of Mohali, we bring you the finest beans from around the world, roasted in small batches to preserve their unique profiles.
-                </p>
-                <p className="text-zinc-400 leading-relaxed">
-                  Whether you crave the kick of a Nitro Cold Brew or the comfort of a warm Jaggery Latte, every cup is a testament to our dedication to quality and craft. Come for the coffee, stay for the vibe.
-                </p>
-              </div>
+        {/* About Section - Enhanced */}
+        <section id="about" className="py-32 bg-zinc-900 section-divider">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-3 mb-4"
+              >
+                <div className="h-[1px] w-8 bg-coffee-400"></div>
+                <span className="text-coffee-400 uppercase tracking-[0.3em] text-xs font-semibold">About Us</span>
+                <div className="h-[1px] w-8 bg-coffee-400"></div>
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl md:text-6xl font-heading text-white"
+              >
+                Our Story
+              </motion.h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-black/40 image-overlay"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop"
+                  alt="Coffee Brewing Process"
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="space-y-6"
+              >
+                <div className="space-y-4">
+                  <p className="text-zinc-300 leading-relaxed text-lg">
+                    At <span className="text-coffee-400 font-semibold">DoubleShot Coffee Roasters</span>, we believe coffee is more than a beverage—it's an experience, a ritual, and a moment of pure joy.
+                  </p>
+                  <p className="text-zinc-400 leading-relaxed">
+                    Founded in the heart of Mohali, we source the finest beans from renowned estates across the globe. Each batch is roasted with precision to unlock unique flavor profiles that tell a story in every sip.
+                  </p>
+                  <p className="text-zinc-400 leading-relaxed">
+                    Whether you're savoring our signature Nitro Cold Brew or indulging in a warm Jaggery Latte, every cup reflects our unwavering commitment to quality, sustainability, and the art of coffee making.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-3 gap-6 pt-6 border-t border-zinc-800">
+                  <div className="text-center">
+                    <div className="text-3xl font-heading text-coffee-400 mb-1">5+</div>
+                    <div className="text-xs text-zinc-500 uppercase tracking-wider">Years</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-heading text-coffee-400 mb-1">50+</div>
+                    <div className="text-xs text-zinc-500 uppercase tracking-wider">Varieties</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-heading text-coffee-400 mb-1">10k+</div>
+                    <div className="text-xs text-zinc-500 uppercase tracking-wider">Happy Customers</div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
         <Testimonials />
 
-        {/* Locations Section */}
-        <section id="locations" className="py-20 bg-black">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-heading mb-12">Find Us</h2>
-            <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-lg max-w-md mx-auto hover:border-coffee-500 transition-colors group">
-              <h3 className="text-xl font-bold mb-2 text-white group-hover:text-coffee-400 transition-colors">Mohali</h3>
-              <p className="text-zinc-400 mb-4">Sector 82, JLPL Industrial Area</p>
-              <div className="w-full h-48 bg-zinc-800 rounded mb-4 overflow-hidden relative">
+        {/* Locations Section - Enhanced */}
+        <section id="locations" className="py-32 bg-black section-divider">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-3 mb-4"
+              >
+                <div className="h-[1px] w-8 bg-coffee-400"></div>
+                <span className="text-coffee-400 uppercase tracking-[0.3em] text-xs font-semibold">Visit Us</span>
+                <div className="h-[1px] w-8 bg-coffee-400"></div>
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl md:text-6xl font-heading text-white"
+              >
+                Find Us
+              </motion.h2>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-zinc-900 border-2 border-zinc-800 p-10 rounded-2xl max-w-2xl mx-auto hover:border-coffee-500 transition-all duration-300 card-hover"
+            >
+              <h3 className="text-2xl font-heading font-bold mb-3 text-white">DoubleShot Mohali</h3>
+              <p className="text-zinc-400 mb-6 text-lg">Sector 82, JLPL Industrial Area, Mohali, Punjab</p>
+
+              <div className="w-full h-64 bg-zinc-800 rounded-xl mb-6 overflow-hidden relative shadow-xl">
                 <div className="absolute inset-0 flex items-center justify-center text-zinc-600 z-10">
-                  <div className="bg-black/70 px-4 py-2 rounded">
-                    <p className="text-sm">📍 Hunter Street, Mohali</p>
+                  <div className="bg-black/80 px-6 py-3 rounded-lg backdrop-blur-sm border border-zinc-700">
+                    <p className="text-sm text-coffee-400 font-medium">📍 Hunter Street, Mohali</p>
                   </div>
                 </div>
-                <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover opacity-50" alt="Location" />
+                <img
+                  src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2071&auto=format&fit=crop"
+                  className="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity"
+                  alt="Location Map"
+                />
               </div>
-              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-coffee-400 text-sm uppercase tracking-wider hover:text-white transition-colors">Get Directions →</a>
-            </div>
+
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-black/40 p-4 rounded-lg border border-zinc-800">
+                  <div className="text-coffee-400 text-sm font-semibold mb-1">Opening Hours</div>
+                  <div className="text-zinc-300 text-sm">Mon - Sun: 8 AM - 11 PM</div>
+                </div>
+                <div className="bg-black/40 p-4 rounded-lg border border-zinc-800">
+                  <div className="text-coffee-400 text-sm font-semibold mb-1">Contact</div>
+                  <div className="text-zinc-300 text-sm">+91 98765 43210</div>
+                </div>
+              </div>
+
+              <a
+                href="https://maps.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary w-full text-center block"
+              >
+                Get Directions
+              </a>
+            </motion.div>
           </div>
         </section>
 

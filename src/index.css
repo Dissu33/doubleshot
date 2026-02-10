@@ -17,6 +17,13 @@
   /* Font families */
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
+
+  /* Spacing scale */
+  --spacing-section: 6rem;
+}
+
+* {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -24,6 +31,8 @@ body {
   color: #e7e5e4;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 h1,
@@ -33,11 +42,22 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Professional button styles */
+.btn-primary {
+  @apply px-8 py-3 bg-coffee-500 text-white font-medium hover:bg-coffee-600 transition-all duration-300 rounded-sm uppercase tracking-wider text-sm shadow-lg shadow-coffee-900/30 hover:shadow-xl hover:shadow-coffee-900/40 hover:-translate-y-0.5;
+}
+
+.btn-secondary {
+  @apply px-8 py-3 border-2 border-coffee-400 text-coffee-400 font-medium hover:bg-coffee-400 hover:text-white transition-all duration-300 rounded-sm uppercase tracking-wider text-sm backdrop-blur-sm hover:shadow-lg hover:shadow-coffee-900/30;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -45,12 +65,12 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #44403c;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #6a4332, #b08968);
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #57534e;
+  background: linear-gradient(180deg, #7f5539, #d4a373);
 }
 
 /* Subtle zoom animation for hero */
@@ -62,10 +82,99 @@ h6 {
   }
 
   50% {
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
 }
 
 .animate-subtle-zoom {
-  animation: subtle-zoom 20s ease-in-out infinite;
+  animation: subtle-zoom 25s ease-in-out infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Professional card hover effect */
+.card-hover {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-coffee-900/20;
+}
+
+/* Text gradient */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-coffee-200 via-coffee-400 to-coffee-600;
+}
+
+/* Section divider */
+.section-divider {
+  @apply relative;
+}
+
+.section-divider::before {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-coffee-800 to-transparent;
+}
+
+/* Image overlay effect - Lighter on mobile */
+.image-overlay {
+  @apply relative overflow-hidden;
+}
+
+.image-overlay::after {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300;
+}
+
+.image-overlay:hover::after {
+  @apply opacity-100;
+}
+
+/* Mobile-specific brightness adjustments */
+@media (max-width: 768px) {
+  .hero-overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(12, 10, 9, 0.9)) !important;
+  }
+
+  .mobile-bright img {
+    filter: brightness(1.2);
+  }
+}
+
+/* Professional input styles */
+input,
+select,
+textarea {
+  @apply transition-all duration-200;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  @apply ring-2 ring-coffee-500/50 border-coffee-500;
+}
+
+/* Section spacing for better visual separation */
+section {
+  @apply relative;
+}
+
+/* Alternating section backgrounds for better distinction */
+section:nth-child(odd) {
+  @apply bg-zinc-950;
+}
+
+section:nth-child(even) {
+  @apply bg-black;
 }
