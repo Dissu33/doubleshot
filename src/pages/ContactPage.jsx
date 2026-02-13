@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import ContactForm from '../components/ContactForm';
+
 
 const pageVariants = {
     initial: { opacity: 0, y: 20 },
@@ -141,6 +143,9 @@ const ContactPage = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Contact Form */}
+            <ContactForm />
 
             {/* CTA Section */}
             <section className="py-20 bg-zinc-900 relative overflow-hidden">

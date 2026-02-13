@@ -14,8 +14,39 @@ const BookingModal = ({ isOpen, onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle booking submission
-        alert('Booking request submitted! We will contact you shortly.');
+
+        // Generate unique booking ID
+        const bookingId = `BK${Date.now()}`;
+
+        // Create booking object
+        const booking = {
+            id: bookingId,
+            ...formData,
+            timestamp: new Date().toISOString(),
+            status: 'pending'
+        };
+
+        // Get existing bookings from localStorage
+        const existingBookings = JSON.parse(localStorage.getItem('doubleshot_bookings') || '[]');
+
+        // Add new booking
+        existingBookings.push(booking);
+
+        // Save to localStorage
+        localStorage.setItem('doubleshot_bookings', JSON.stringify(existingBookings));
+
+        // Show success message
+        alert(`✅ Booking Confirmed!\n\nBooking ID: ${bookingId}\nName: ${formData.name}\nDate: ${formData.date}\nTime: ${formData.time}\nGuests: ${formData.guests}\n\nWe look forward to serving you!`);
+
+        // Reset form and close
+        setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            date: '',
+            time: '',
+            guests: '2'
+        });
         onClose();
     };
 
