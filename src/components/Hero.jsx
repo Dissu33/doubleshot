@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, MapPin, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
     return (
@@ -72,12 +73,12 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.9 }}
                     className="flex flex-col md:flex-row gap-4 justify-center items-center"
                 >
-                    <a href="#menu" className="btn-primary w-full md:w-auto">
+                    <Link to="/menu" className="btn-primary w-full md:w-auto">
                         Explore Menu
-                    </a>
-                    <a href="#locations" className="btn-secondary w-full md:w-auto">
+                    </Link>
+                    <Link to="/contact" className="btn-secondary w-full md:w-auto">
                         Visit Us
-                    </a>
+                    </Link>
                 </motion.div>
             </div>
 
